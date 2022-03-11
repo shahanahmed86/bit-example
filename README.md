@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Bit Documentation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## <u>installation</u>
 
-## Available Scripts
+type in your terminal
 
-In the project directory, you can run:
+`npx @teambit/bvm install`
 
-### `npm start`
+## Setup
+- initialize `bit init --harmony`
+- add component `bit add src/components/button --namespace ui` where /button is the folder
+- info of the component `bit show ui/button`
+- compile the button `bit compile`
+- create files in your folder button[button.composition.js,button.docs.md,button.js,index.js]
+- link the bit after creating markdown (button.docs.md) file `bit link`
+- start `bit start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### content of the component's files
+- button.composition.js
+```js
+import React from 'react';
+import Button from './button';
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+export const BasicButton = () => <Button title='Click here' handleClick={() => alert("You've just clicked me")} />;
+```
+- button.docs.md
+```md
+---
+name: button
+description: my first button
+labels: ['react', 'button']
+---
+import {Button} from './button'
 
-### `npm test`
+hello button to use me just add:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+<Button title="Click me" handleClick={() => alert("You've just clicked me")} />
+```
 
-### `npm run build`
+- button.js
+```js
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+function Button({ title, handleClick }) {
+  return (
+    <Fragment>
+      <button type='button' onClick={handleClick}>{title}</button>
+    </Fragment>
+  )
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Button.propTypes = {
+  title: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired,
+}
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Button.defaultProps = {
+  title: "Press me",
+  handleClick: () => alert("You've just pressed me")
+}
 
-### `npm run eject`
+export default Button;
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- index.js
+```js
+export { default as Button } from './button';
+```
