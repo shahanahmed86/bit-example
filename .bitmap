@@ -11,13 +11,13 @@
 {
     "ui/button": {
         "scope": "shahanahmed86.my-components",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "mainFile": "index.js",
         "rootDir": "src/components/button"
     },
     "ui/table": {
         "scope": "shahanahmed86.my-components",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "mainFile": "index.js",
         "rootDir": "src/components/table"
     },
